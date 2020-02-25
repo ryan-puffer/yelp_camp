@@ -6,7 +6,7 @@ var express = require("express"),
     seedDB = require("./seeds");
 
 
-mongoose.connect("mongodb://localhost/yelp_camp", {
+mongoose.connect("mongodb://localhost/yelp_camp_v3", {
     useNewUrlParser: true,
     useUnifiedTopology: true
     });
@@ -22,7 +22,7 @@ seedDB();
 
 
 app.get("/", function(req, res){
-    res.render("index");
+    res.render("landing");
 });
 
 //INDEX -- show all campgrounds
@@ -32,7 +32,7 @@ app.get("/campgrounds", function(req, res){
         if(err){
             console.log(err);
         } else {
-            res.render("index", {campgrounds: allCampgrounds});
+            res.render("index", {campgrounds:allCampgrounds});
             
         }
     })
