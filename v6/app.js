@@ -1,9 +1,12 @@
 var express = require("express"),
     app = express(),
     bodyParser = require("body-parser"),
-    mongoose = require("mongoose");
-    Campground = require("./models/campground");
-    Comment = require("./models/comment");
+    mongoose = require("mongoose"),
+    passport = require("passport"),
+    LocalStategy = require("passport-local"),
+    Campground = require("./models/campground"),
+    Comment = require("./models/comment"),
+    User = require("./models/user")
     seedDB = require("./seeds");
 
 
