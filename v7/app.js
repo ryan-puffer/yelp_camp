@@ -9,6 +9,9 @@ var express = require("express"),
     User = require("./models/user")
     seedDB = require("./seeds");
 
+var commentRoutes = require("./routes/comments"),
+    campgroundRoutes = require("./routes/campgrounds"),
+    indexRoutes = require("./routes/index");
 
 
 mongoose.connect("mongodb://localhost/yelp_camp_v6", {
@@ -40,7 +43,9 @@ app.use(function(req, res, next){
     next();
 })
 
-
+app.use("/campgrounds", campgroundRoutes);
+app.use("/campgrounds/:id/comments", commentRoutes);
+app.use("/", indexRoutes);
 
 
 

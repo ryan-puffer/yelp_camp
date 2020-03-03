@@ -1,4 +1,9 @@
-app.get("/campgrounds/:id/comments/new", isLoggedIn, function(req, res){
+var express = require("express");
+var router = express.Router();
+var Campground = require("../models/campground")
+var Comment = require("../models/comment")
+
+router.get("/campgrounds/:id/comments/new", isLoggedIn, function(req, res){
     //find campground by id
     Campground.findById(req.params.id, function(err, campground){
         if(err){
@@ -10,7 +15,7 @@ app.get("/campgrounds/:id/comments/new", isLoggedIn, function(req, res){
     
 });
 
-app.post("/campgrounds/:id/comments", isLoggedIn, function(req, res){
+router.post("/campgrounds/:id/comments", isLoggedIn, function(req, res){
     //lookup campground using Id
     Campground.findById(req.params.id, function(err, campground){
         if(err){
@@ -33,4 +38,13 @@ app.post("/campgrounds/:id/comments", isLoggedIn, function(req, res){
     //connect new comment to campground
     //redirect to campground show page
 
-})
+});
+
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
+
+module.exports = router;
