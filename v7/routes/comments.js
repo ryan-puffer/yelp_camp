@@ -1,21 +1,23 @@
 var express = require("express");
-var router = express.Router();
-var Campground = require("../models/campground")
-var Comment = require("../models/comment")
+var router = express.Router({mergeParams: true});
+var Campground = require("../models/campground");
+var Comment = require("../models/comment");
 
-router.get("/campgrounds/:id/comments/new", isLoggedIn, function(req, res){
+
+//COMMENTS NEW
+router.get("/new", isLoggedIn, function(req, res){
     //find campground by id
     Campground.findById(req.params.id, function(err, campground){
         if(err){
             console.log(err);
-        }else {
+        } else {
             res.render("comments/new", {campground: campground})
         }
     })
-    
 });
 
-router.post("/campgrounds/:id/comments", isLoggedIn, function(req, res){
+//COMMENTS CREATE
+router.post("/", isLoggedIn, function(req, res){
     //lookup campground using Id
     Campground.findById(req.params.id, function(err, campground){
         if(err){
@@ -34,10 +36,6 @@ router.post("/campgrounds/:id/comments", isLoggedIn, function(req, res){
 
         }
     })
-    //create new comment
-    //connect new comment to campground
-    //redirect to campground show page
-
 });
 
 function isLoggedIn(req, res, next){

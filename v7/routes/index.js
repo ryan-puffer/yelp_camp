@@ -3,7 +3,7 @@ var router = express.Router();
 var passport = require("passport");
 var User = require("../models/user");
 
-
+//root route
 router.get("/", function(req, res){
     res.render("landing");
 });
@@ -32,6 +32,7 @@ router.get("/login", function(req, res){
     res.render("login");
 })
 
+//handles login logic
 router.post("/login", 
     passport.authenticate("local", 
     {
