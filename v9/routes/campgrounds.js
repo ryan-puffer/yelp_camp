@@ -21,12 +21,19 @@ router.post("/", isLoggedIn, function(req, res){
     var name = req.body.name;
     var image = req.body.image;
     var desc = req.body.description;
-    var newCampground = {name: name, image: image, description: desc} //don't really understand this yet
+    var author = {
+        id: req.user._id,
+        username: req.user.username
+    }
+    var newCampground = {name: name, image: image, description: desc, author: author} //don't really understand this yet
+
     Campground.create(newCampground, function(err, newlyCreated){
         if(err){
             console.log(err);
         } else {
+            console.log(newlyCreated);
             res.redirect("/campgrounds"); //default is to redirect as a get route
+
         }
     })//create a new campground and save to db
     //redirect back to campgrounds page
