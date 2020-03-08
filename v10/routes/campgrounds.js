@@ -62,6 +62,13 @@ router.get("/:id", function(req, res){
     
 });
 
+// EDIT CAMPGROUND ROUTE
+router.get("/:id/edit", function(req, res){
+    res.render("campgrounds/edit");
+})
+// UPDATE CAMPGROUND ROUTE
+
+//MIDDLEWARE
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();
