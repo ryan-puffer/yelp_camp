@@ -55,14 +55,11 @@ router.get("/:id", function(req, res){
         if(err){
             console.log(err);
         } else {
-            
             //render show template with that campground
-            res.render("campgrounds/show", {campground: foundCampground});
+            res.render("campgrounds/show", {campground: foundCampground, page: 'campgrounds'});
         }
     });
- 
     //show that campground
-    
 });
 
 // EDIT CAMPGROUND ROUTE
