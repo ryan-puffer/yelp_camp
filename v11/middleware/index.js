@@ -38,7 +38,8 @@ middlewareObj.checkCommentOwnership = function(req, res, next){
                      if(foundComment.author.id.equals(req.user._id)){
                          next();
                      } else {
-                         res.send("YOU DO NOT HAVE PERMISSION TO DO THAT!");
+                         req.flash("error", "You do not have permission to do that!")
+                         res.redirect("back");
                      }
                  }
              });
