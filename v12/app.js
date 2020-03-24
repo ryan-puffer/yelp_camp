@@ -17,7 +17,7 @@ var commentRoutes = require("./routes/comments"),
     indexRoutes = require("./routes/index");
 
 
-mongoose.connect("mongodb://localhost/yelp_camp_v6", {
+mongoose.connect("mongodb://localhost/yelp_camp_v12", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false
