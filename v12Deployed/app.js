@@ -1,5 +1,5 @@
 require('dotenv').config();
-
+var port = process.env.PORT || 3000;
 var express = require("express"),
     app = express(),
     bodyParser = require("body-parser"),
@@ -18,11 +18,13 @@ var commentRoutes = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
     indexRoutes = require("./routes/index");
 
+const url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp_v12"
 
-mongoose.connect("mongodb://localhost/yelp_camp_v12", {
+mongoose.connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useFindAndModify: false
+    useFindAndModify: false,
+    useCreateIndex: true
     });
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
@@ -60,6 +62,6 @@ app.use("/", indexRoutes);
 
 
 
-app.listen(3000, function(){
+app.listen(port, function(){
     console.log("YelpCamp Server has started!");
 });
