@@ -18,11 +18,12 @@ var commentRoutes = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
     indexRoutes = require("./routes/index");
 
-
-mongoose.connect("mongodb://localhost/yelp_camp_v12", {
+const url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp_v12"
+mongoose.connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useFindAndModify: false
+    useFindAndModify: false,
+    useCreateIndex: true
     });
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
