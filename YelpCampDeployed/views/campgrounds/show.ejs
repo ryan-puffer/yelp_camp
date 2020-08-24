@@ -9,6 +9,7 @@
             </div>
             <div id="map"></div>
         </div>
+        <!--show campground info-->
         <div class="col-md-9">
             <div class="thumbnail">
                 <img class="img-responsive" src="<%= campground.image %>" alt="">
@@ -33,6 +34,7 @@
 
                 </div>
                 <hr>
+                <!--show campground comments-->
                 <% campground.comments.forEach(function(comment){ %>
                     <div class="row">
                         <div class="col-md-12">
